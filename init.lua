@@ -1,11 +1,11 @@
 require("packer").startup(function(use)
     use "wbthomason/packer.nvim"
 
-    use "nvim-treesitter/nvim-treesitter"
+     use "nvim-treesitter/nvim-treesitter"
 
     use {
-	    "nvim-telescope/telescope.nvim",
-	    requires = {
+	"nvim-telescope/telescope.nvim",
+	requires = {
         "nvim-lua/plenary.nvim"
       },
     }
@@ -24,6 +24,8 @@ require("packer").startup(function(use)
     use "hrsh7th/cmp-nvim-lsp"
     use "hrsh7th/nvim-cmp"
 
+    -- use "shaunsingh/nord.nvim"
+    use "navarasu/onedark.nvim"
 end)
 
 -- base environment setup
@@ -32,4 +34,12 @@ require("core.env")
 -- plugin library setup and configuration files
 require("core.plugin_config")
 
--- vim.cmd.colorscheme('tokyonight')
+-- enable color scheme
+-- vim.cmd[[colorscheme nord]]
+-- require("nord").set()
+
+require("onedark").setup {
+  transparent = true,
+  style = 'dark'
+}
+require("onedark").load()
