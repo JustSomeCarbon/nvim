@@ -19,8 +19,8 @@ require("packer").startup(function(use)
 
     use {"VonHeikemen/lsp-zero.nvim", branch = 'v4.x'}
     use "neovim/nvim-lspconfig"
-    use {"williamboman/mason.nvim", run = ":MasonUpdate"}
-    use "williamboman/mason-lspconfig.nvim"
+    use {"mason-org/mason.nvim", run = ":MasonUpdate"}
+    use "mason-org/mason-lspconfig.nvim"
     use "hrsh7th/cmp-nvim-lsp"
     use "hrsh7th/nvim-cmp"
 
