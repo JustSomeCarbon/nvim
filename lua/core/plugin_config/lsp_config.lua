@@ -18,14 +18,6 @@ local lsp_attach = function(_, bufnr)
   vim.keymap.set('n', 'gs', "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
 end
 
---[[
-lsp_zero.extend_lspconfig({
-  sign_text = true,
-  lsp_attach = lsp_attach,
-  capabilities = require("cmp_nvim_lsp").default_capabilities(),
-})
-]]
-
 
 -- Load Mason
 require('mason').setup({
@@ -41,3 +33,4 @@ require('mason-lspconfig').setup({
 })
 
 vim.keymap.set('n', '<C-_>', "<cmd>lua vim.diagnostic.open_float()<CR>", { noremap=true, silent=true})
+
