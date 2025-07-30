@@ -2,7 +2,9 @@
 -- local capabilities = require('cmp_nvim_lsp').default_capabilties()
 
 -- load lsp-zero
-local lsp_zero = require("lsp-zero")
+-- local lsp_zero = require("lsp-zero")
+
+local lspconfig = require('lspconfig')
 
 local lsp_attach = function(_, bufnr)
   local opts = {buffer = bufnr}
@@ -16,11 +18,13 @@ local lsp_attach = function(_, bufnr)
   vim.keymap.set('n', 'gs', "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
 end
 
+--[[
 lsp_zero.extend_lspconfig({
   sign_text = true,
   lsp_attach = lsp_attach,
   capabilities = require("cmp_nvim_lsp").default_capabilities(),
 })
+]]
 
 
 -- Load Mason
@@ -36,9 +40,4 @@ require('mason-lspconfig').setup({
   },
 })
 
-require("mason-lspconfig").setup_handlers({
-  function(server_name)
-    require('lspconfig')[server_name].setup({})
-  end
-})
-
+vim.keymap.set('n', '<C-_>', "<cmd>lua vim.diagnostic.open_float()<CR>", { noremap=true, silent=true})
