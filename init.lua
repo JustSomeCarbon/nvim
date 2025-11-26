@@ -1,34 +1,48 @@
-require("packer").startup(function(use)
-    use "wbthomason/packer.nvim"
+local function bootstrap_pckr()
+  local pckr_path = vim.fn.stdpath("data") .. "/pckr/pckr.nvim"
 
-    use "nvim-treesitter/nvim-treesitter"
+  if not (vim.uv or vim.loop).fs_stat(pckr_path) then
+    vim.fn.system({
+      'git',
+      'clone',
+      "--filter=blob:none",
+      'https://github.com/lewis6991/pckr.nvim',
+      pckr_path
+    })
+  end
 
-    use {
-	"nvim-telescope/telescope.nvim",
-	requires = {
-        "nvim-lua/plenary.nvim"
-      },
-    }
+  vim.opt.rtp:prepend(pckr_path)
+end
 
-    use {
-      "nvim-tree/nvim-tree.lua",
-      requires = {
-        "nvim-tree/nvim-web-devicons"
-      },
-    }
+bootstrap_pckr()
 
-    use {"VonHeikemen/lsp-zero.nvim", branch = 'v4.x'}
-    use "neovim/nvim-lspconfig"
-    use {"mason-org/mason.nvim", run = ":MasonUpdate"}
-    use "mason-org/mason-lspconfig.nvim"
-    use "hrsh7th/cmp-nvim-lsp"
-    use "hrsh7th/nvim-cmp"
+require('pckr').add{
+  'nvim-treesitter/nvim-treesitter';
 
-    -- Image rendering
+  { 'nvim-telescope/telescope.nvim',
+    requires = 'nvim-lua/plenary.nvim'
+  };
 
-    -- use "shaunsingh/nord.nvim"
-    use "navarasu/onedark.nvim"
-end)
+  { 'nvim-tree/nvim-tree.lua',
+    requires = 'nvim-tree/nvim-web-devicons'
+  };
+
+  { 'VonHeikemen/lsp-zero.nvim',
+    branch = 'v4.x'
+  };
+
+  'neovim/nvim-lspconfig';
+
+  { 'mason-org/mason.nvim', run = ':MasonUpdate' };
+
+  'mason-org/mason-lspconfig.nvim';
+
+  'hrsh7th/cmp-nvim-lsp';
+
+  'hrsh7th/nvim-cmp';
+
+  'navarasu/onedark.nvim';
+}
 
 -- base environment setup
 require("core.env")
