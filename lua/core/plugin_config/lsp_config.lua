@@ -7,6 +7,13 @@ require('mason').setup({
 local mlsp = require('mason-lspconfig')
 mlsp.setup({
   ensure_installed = {"lua_ls"},
+  handlers = {
+    function(servername)
+      lspconfig[servername].setup({
+        on_attach = lsp_attach,
+      })
+    end,
+  }
 })
 
 -- capabilities (optional, for nvim-cmp)
@@ -20,7 +27,7 @@ end
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
     vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = args.buf, silent = true })
-    vim.keymap.set("n", "<C-_>", vim.diagnostic.open_float, { buffer = args.buf, silent = true })
+    vim.keymap.set("n", "<C-k>", vim.diagnostic.open_float, { buffer = args.buf, silent = true })
   end,
 })
 
