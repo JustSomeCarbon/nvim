@@ -18,11 +18,11 @@ bootstrap_pckr()
 
 require('pckr').add{
   {
-    'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate',
+    "romus204/tree-sitter-manager.nvim",
     config = function()
-      require('nvim-treesitter.config').setup({
-        highlight = {enable = true, additional_vim_regex_highlighting = false},
+      require("tree-sitter-manager").setup({
+        ensure_installed = {"lua"},
+        auto_installed = true
       })
     end,
   },

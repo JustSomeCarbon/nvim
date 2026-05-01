@@ -19,3 +19,6 @@ done by downloading a desired font from Nerd Fonts and configuring the terminal 
 - Neovim >= v0.11.0
 - packr
 - Nerd Font
+
+Tree-sitter cli is also needed for the system to load correctly. This can be installed through homebrew or npm
+with `npm i -g tree-sitter`.
