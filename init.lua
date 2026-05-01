@@ -31,6 +31,10 @@ require('pckr').add{
     requires = 'nvim-lua/plenary.nvim'
   };
 
+  { "nvim-telescope/telescope-fzf-native.nvim",
+    run = "make"
+  };
+
   { 'nvim-tree/nvim-tree.lua',
     requires = 'nvim-tree/nvim-web-devicons'
   };
