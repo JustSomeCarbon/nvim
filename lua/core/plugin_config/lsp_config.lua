@@ -1,5 +1,12 @@
 local lspconfig = require('lspconfig')
 
+-- capabilities (optional, for nvim-cmp)
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+local ok, cmp = pcall(require, "cmp_nvim_lsp")
+if ok then
+  capabilities = cmp.default_capabilities(capabilities)
+end
+
 local lsp_attach = function(_, bufnr)
   local opts = {buffer = bufnr}
   -- keymappings for the lsp features
@@ -11,7 +18,6 @@ local lsp_attach = function(_, bufnr)
   vim.keymap.set('n', 'gr', "<cmd>lua vim.lsp.buf.references()<cr>", opts)
   vim.keymap.set('n', 'gs', "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
 end
-
 
 -- Load Mason
 require('mason').setup({
@@ -26,17 +32,14 @@ mlsp.setup({
     function(servername)
       lspconfig[servername].setup({
         on_attach = lsp_attach,
+        capabilities = capabilities,
       })
     end,
   }
 })
 
--- capabilities (optional, for nvim-cmp)
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-local ok, cmp = pcall(require, "cmp_nvim_lsp")
-if ok then
-  capabilities = cmp.default_capabilities(capabilities)
-end
+-- Other way to set up
+--[[
 
 -- keymaps only when LSP attaches
 vim.api.nvim_create_autocmd("LspAttach", {
@@ -66,5 +69,4 @@ for _, server in ipairs(installed) do
   vim.lsp.config[server] = vim.tbl_deep_extend("force", default, overrides[server] or {})
 end
 vim.lsp.enable(installed)
-
-
+]]
