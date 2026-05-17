@@ -39,10 +39,6 @@ require('pckr').add{
     requires = 'nvim-tree/nvim-web-devicons'
   };
 
-  { 'VonHeikemen/lsp-zero.nvim',
-    branch = 'v4.x'
-  };
-
   'neovim/nvim-lspconfig';
 
   { 'mason-org/mason.nvim', run = ':MasonUpdate' };
