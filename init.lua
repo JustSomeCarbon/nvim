@@ -19,10 +19,21 @@ bootstrap_pckr()
 require('pckr').add{
   {
     "romus204/tree-sitter-manager.nvim",
+    opt = false,
     config = function()
       require("tree-sitter-manager").setup({
         ensure_installed = {"lua"},
-        auto_installed = true
+        auto_installed = false,
+        languages = {
+          lua = {
+            install_info = {
+              url = "https://github.com/tree-sitter-grammars/tree-sitter-lua",
+              use_repo_queries = true,
+	            -- intentionally no revision
+	            -- intentionally no branch unless you need one
+	          },
+          },
+        },
       })
     end,
   },
