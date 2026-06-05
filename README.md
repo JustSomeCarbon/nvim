@@ -17,8 +17,25 @@ done by downloading a desired font from Nerd Fonts and configuring the terminal 
 ## Requirements
 
 - Neovim >= v0.11.0
-- packr
+- Pckr
 - Nerd Font
+- tree-sitter
 
-Tree-sitter cli is also needed for the system to load correctly. This can be installed through homebrew or npm
-with `npm i -g tree-sitter`.
+To properly funcion, a system level tree-sitter package must be present on the local machine. For Mac OS, this
+can be installed through homebrew or through npm with `npm i -g tree-sitter`. For Linux it is recomended to use
+the Rust crate `tree-sitter-cli` which can be installed with `cargo install --locked tree-sitter-cli`.
+
+#### Cargo Requirements
+
+Many of the cargo binaries rely on `clang` to compile. Before installing `tree-sitter-cli` ensure that `clang`
+is installed along with any of its libraries and shared header libraries.
+
+### Installing & Managing Parsers
+
+Parsers can be managed through the menu provided by the tree-sitter package. This can be opened with
+`:TSManager`.
+
+### Installing & Managing LSPs
+
+LSPs can be installed through `:Mason`.
+
