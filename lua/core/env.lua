@@ -16,4 +16,8 @@ vim.opt.shiftwidth = 2
 vim.opt.shiftround = true
 vim.opt.expandtab = true
 
+-- set minimum number of screen lines visible
+vim.opt.scrolloff = 5
+vim.opt.sidescrolloff = 5
+
 -- vim.api.nvim_set_hl(0, "CursorLine", { bg = "#333333" })
